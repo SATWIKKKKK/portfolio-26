@@ -98,9 +98,19 @@ export default function App() {
     <div className="min-h-screen bg-bg-dark text-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-surface-dark/90 backdrop-blur-sm border-b border-border-muted px-6 md:px-12 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bebas text-primary-gold tracking-tight">
+        <a
+          href="#hero"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsMenuOpen(false);
+            if (heroRef && heroRef.current) {
+              heroRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
+          className="text-2xl font-bebas text-primary-gold tracking-tight"
+        >
           SATWIK
-        </div>
+        </a>
         
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-8">
