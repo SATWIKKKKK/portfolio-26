@@ -99,21 +99,23 @@ export default function App() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-surface-dark/90 backdrop-blur-sm border-b border-border-muted px-6 md:px-12 py-4 flex justify-between items-center">
         <a
-          href="#hero"
+          href="/home"
           onClick={(e) => {
             e.preventDefault();
             setIsMenuOpen(false);
-            if (heroRef && heroRef.current) {
-              heroRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Navigate to /home (works from any section)
+            if (typeof window !== 'undefined') {
+              window.location.href = '/home';
             }
           }}
           className="text-2xl font-bebas text-primary-gold tracking-tight"
+          aria-label="Go to home"
         >
           SATWIK
         </a>
         
         {/* Desktop Nav */}
-          <div className="hidden lg:flex gap-8">
+        <div className="hidden md:flex gap-8">
           {navItems.map((item) => (
             <a key={item.name} href={item.href} className="nav-link">
               {item.name}
@@ -132,8 +134,8 @@ export default function App() {
           </a>
           
           {/* Mobile Menu Toggle */}
-            <button 
-              className="lg:hidden text-primary-gold p-2"
+          <button 
+            className="md:hidden text-primary-gold p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -209,7 +211,7 @@ export default function App() {
               <a href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="border border-primary-gold text-primary-gold px-10 py-4 hover:bg-primary-gold/10 transition-all">
                 VIEW RESUME
               </a>
-                      className="fixed inset-0 z-40 bg-bg-dark pt-24 px-6 lg:hidden"
+            </div>
 
             <div className="mt-20 flex flex-wrap justify-start gap-8 md:gap-12 font-mono text-primary-gold/60 text-xs md:text-sm border-t border-border-muted pt-8 w-full">
               
@@ -256,7 +258,7 @@ export default function App() {
 
         {/* Experience Section */}
         <section ref={experienceRef} id="experience" className="py-32 px-6 md:px-24">
-                              Currently engineering high-performance systems and open to <span>internship opportunities</span> that push technical boundaries.
+          <div className="mb-20 reveal">
             <h2 className="text-6xl tracking-wider inline-block border-b-2 border-primary-gold pb-2 uppercase">EXPERIENCE</h2>
         
           </div>
