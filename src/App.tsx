@@ -357,7 +357,7 @@ export default function App() {
                 <CreditCard className="text-primary-gold" size={36} />
               </div>
               <a
-                href="https://aaspass.gamma.vercel.app"
+                href="https://aaspass-gamma.vercel.app/home"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-bebas text-3xl mb-4 text-white uppercase hover:text-primary-gold transition-colors duration-200 leading-none block"
@@ -380,7 +380,7 @@ export default function App() {
                     <Github size={16} />
                   </a>
                   <a
-                    href="https://aaspass-gamma.vercel.app"
+                    href="https://aaspass-gamma.vercel.app/home"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
