@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Epilogue", sans-serif;
+  --font-bebas: "Bebas Neue", sans-serif;
+
+  --color-primary-gold: #ffd700;
+  --color-bg-dark: #050505;
+  --color-surface-dark: #131313;
+  --color-border-muted: #4d4732;
+  --color-text-muted: #b8c8da;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-dark text-white font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-bebas {
+    @apply font-bebas;
+  }
+}
+
+@layer components {
+  .precision-border {
+    @apply border border-border-muted;
+  }
+
+  .precision-border-gold {
+    @apply border border-primary-gold;
+  }
+
+  .gold-thread {
+    @apply border-l border-primary-gold pl-8 md:pl-12;
+  }
+
+  .milled-card {
+    @apply bg-surface-dark p-8 border border-border-muted transition-all duration-300 hover:bg-[#0e0e0e] hover:border-primary-gold hover:shadow-[0_0_12px_rgba(255,215,0,0.2)];
+  }
+
+  .nav-link {
+    @apply text-text-muted hover:text-primary-gold transition-colors duration-300 tracking-widest uppercase text-sm;
+  }
+
+  /* Snippet Classes */
+  .text-secondary {
+    @apply text-text-muted;
+  }
+
+  .text-primary-container {
+    @apply text-primary-gold;
+  }
+
+  .font-label {
+    @apply font-mono;
+  }
+
+  .bg-background {
+    @apply bg-bg-dark;
+  }
+
+  .border-outline-variant {
+    @apply border-border-muted;
+  }
+
+  .text-outline {
+    @apply text-border-muted;
+  }
+}
+
+::selection {
+  @apply bg-primary-gold text-bg-dark;
+}
