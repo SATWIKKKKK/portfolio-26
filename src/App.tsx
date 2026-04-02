@@ -24,6 +24,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
@@ -64,6 +66,26 @@ export default function App() {
     return () => ctx.revert();
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('sending');
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setFormStatus('error');
+      }
+    } catch {
+      setFormStatus('error');
+    }
+  };
+
   const navItems = [
     { name: 'ABOUT', href: '#about' },
     { name: 'EXPERIENCE', href: '#experience' },
@@ -76,8 +98,8 @@ export default function App() {
     <div className="min-h-screen bg-bg-dark text-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-surface-dark/90 backdrop-blur-sm border-b border-border-muted px-6 md:px-12 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bebas text-primary-gold tracking-tighter">
-          SATWIK CHANDRA
+        <div className="text-2xl font-bebas text-primary-gold tracking-tight">
+          SATWIK
         </div>
         
         {/* Desktop Nav */}
@@ -91,7 +113,9 @@ export default function App() {
 
         <div className="flex items-center gap-4">
           <a 
-            href="#" 
+            href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:block px-6 py-2 border border-primary-gold text-primary-gold font-bebas tracking-widest hover:bg-primary-gold hover:text-bg-dark transition-all duration-300 active:scale-95"
           >
             RESUME
@@ -128,7 +152,9 @@ export default function App() {
                 </a>
               ))}
               <a 
-                href="#" 
+                href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full text-center py-4 border border-primary-gold text-primary-gold font-bebas text-2xl tracking-widest"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -141,12 +167,12 @@ export default function App() {
 
       <main className="pt-24">
         {/* Hero Section */}
-        <section ref={heroRef} id="hero" className="min-h-[90vh] flex flex-col justify-center items-start px-6 md:px-24 relative overflow-hidden text-left">
+        <section ref={heroRef} id="hero" className="min-h-[90vh] flex flex-col justify-center items-start px-6 md:px-24 relative overflow-hidden text-left md:mt-10">
           <div className="hero-content z-10 max-w-5xl flex flex-col items-start">
-            <p className="text-primary-gold font-mono uppercase tracking-[0.3em] mb-4 text-xs md:text-sm">
+            <p className="text-primary-gold font-mono uppercase tracking-[0.2em] mb-4 text-xs md:text-sm md:ml-3">
               ARCHITECTING THE FUTURE
             </p>
-            <h1 className="text-6xl md:text-9xl leading-none mb-10 tracking-tighter uppercase">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-none mb-8 tracking-tight uppercase">
               ARCHITECTING DIGITAL<br />
               <span className="text-primary-gold">SYSTEMS</span> WITH PRECISION.
             </h1>
@@ -156,9 +182,7 @@ export default function App() {
                 <div className="absolute -top-px -left-px w-8 h-8 border-t border-l border-primary-gold"></div>
                 <div className="absolute -bottom-px -right-px w-8 h-8 border-b border-r border-primary-gold"></div>
                 <div className="flex flex-col items-start gap-4">
-                  <span className="font-mono text-[10px] tracking-[0.4em] text-primary-gold uppercase bg-primary-gold/10 px-3 py-1 mb-2">
-                    ENGINEER PROFILE_v2.8
-                  </span>
+                  
                   <p className="text-lg md:text-2xl text-text-muted font-light leading-relaxed">
                     <span className="text-white font-semibold">Satwik Chandra</span> — A Full Stack Architect at <span className="text-primary-gold">KIIT'28</span>. 
                     Currently engineering high-performance systems and open to <span className="border-b border-primary-gold/50">internship opportunities</span> that push technical boundaries.
@@ -172,32 +196,21 @@ export default function App() {
               <a href="#projects" className="bg-primary-gold text-bg-dark px-10 py-4 hover:brightness-110 transition-all border border-primary-gold">
                 EXPLORE MY PROJECTS
               </a>
-              <a href="#" className="border border-primary-gold text-primary-gold px-10 py-4 hover:bg-primary-gold/10 transition-all">
+              <a href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="border border-primary-gold text-primary-gold px-10 py-4 hover:bg-primary-gold/10 transition-all">
                 VIEW RESUME
               </a>
             </div>
 
             <div className="mt-20 flex flex-wrap justify-start gap-8 md:gap-12 font-mono text-primary-gold/60 text-xs md:text-sm border-t border-border-muted pt-8 w-full">
+              
+             
               <div className="flex items-center gap-2">
-                <Terminal size={14} />
-                <span>Next.js Architect</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Database size={14} />
-                <span>Backend Specialist</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Zap size={14} />
-                <span>Performance Engineer</span>
+              
               </div>
             </div>
           </div>
           
-          <div className="absolute inset-0 flex justify-center items-center opacity-[0.02] pointer-events-none select-none">
-            <span className="font-bebas text-[30vw] leading-none text-white overflow-hidden whitespace-nowrap">
-              PRECISION ENGINE
-            </span>
-          </div>
+          
         </section>
 
         {/* About Section */}
@@ -216,7 +229,7 @@ export default function App() {
               {[
                 { label: 'Academic Excellence', value: '9.56' },
                 { label: 'Global Companies', value: '4+' },
-                { label: 'Shipped Projects', value: '10+' },
+                { label: 'Shipped Projects', value: '6+' },
               ].map((stat) => (
                 <div key={stat.label} className="precision-border p-8 flex flex-col items-center justify-center text-center hover:border-primary-gold transition-colors group">
                   <span className="text-5xl font-bebas text-primary-gold mb-2 group-hover:scale-110 transition-transform">
@@ -234,8 +247,8 @@ export default function App() {
         {/* Experience Section */}
         <section ref={experienceRef} id="experience" className="py-32 px-6 md:px-24">
           <div className="mb-20 reveal">
-            <h2 className="text-6xl tracking-wider inline-block border-b-2 border-primary-gold pb-2 uppercase">CHRONOLOGY</h2>
-            <p className="mt-4 text-text-muted font-mono uppercase tracking-widest text-sm">A proven track record of engineering impact</p>
+            <h2 className="text-6xl tracking-wider inline-block border-b-2 border-primary-gold pb-2 uppercase">EXPERIENCE</h2>
+        
           </div>
           
           <div className="relative">
@@ -245,25 +258,25 @@ export default function App() {
             <div className="space-y-24">
               {[
                 {
-                  role: 'Full Stack Developer',
+                  role: 'Backend Developer',
                   company: 'ASVIX',
                   period: 'FEB 2026 – PRESENT',
                   desc: 'Implementing high-performance Node.js features and Dockerizing microservices architecture. Achieved 40%+ faster developer setup times through precision environment orchestration.'
                 },
                 {
-                  role: 'AI Dashboard Engineer',
+                  role: 'Frontend Developer',
                   company: 'SPLIXON AI',
                   period: 'JAN 2026 – FEB 2026',
                   desc: 'Architected complex React dashboards for an AI-driven job portal. Integrated LLM response handling with real-time UI feedback systems.'
                 },
                 {
-                  role: 'Frontend Specialist',
+                  role: 'Frontend Developer',
                   company: 'ZINQ SOFTWARE LABS',
                   period: 'DEC 2025 – MAR 2026',
                   desc: 'Led Next.js SSR implementations with a focus on SEO optimization and LCP reduction. Scaled the core platform UI for enterprise-level accessibility.'
                 },
                 {
-                  role: 'Software Engineer Intern',
+                  role: 'SDE Intern',
                   company: 'GENIUSES FACTORY',
                   period: 'OCT 2025 – NOV 2025',
                   desc: 'Developed core modules for a real-time restaurant management platform. Streamlined order-to-kitchen data flow using persistent web socket connections.'
@@ -291,87 +304,142 @@ export default function App() {
 
         {/* Projects Section */}
         <section ref={projectsRef} id="projects" className="py-32 px-6 md:px-24 bg-[#0e0e0e]">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-20 gap-8 reveal">
-            <div>
-              <h2 className="text-6xl tracking-wider uppercase">SELECTED WORKS</h2>
-              <p className="mt-4 text-secondary font-label uppercase tracking-widest">Engineering solutions for the modern web</p>
-            </div>
-            <div className="text-primary-container font-mono text-sm hidden md:block">
-              [ TOTAL_PROJECTS: 03 ]
-            </div>
+          <div className="mb-20">
+            <h2 className="text-6xl tracking-wider uppercase">SELECTED WORKS</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Project 1 */}
-            <div className="precision-border bg-background p-8 milled-card transition-all duration-300 flex flex-col h-full reveal">
-              <div className="flex justify-between items-start mb-12">
-                <span className="material-symbols-outlined text-primary-container text-4xl">dashboard</span>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] border border-outline-variant text-secondary">NEXT.JS</span>
-                  <span className="px-2 py-1 text-[10px] border border-outline-variant text-secondary">VS CODE API</span>
-                </div>
+
+            {/* Project 1 — VS INTEGRATE */}
+            <div className="border border-border-muted bg-surface-dark p-8 flex flex-col h-full hover:border-primary-gold hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300">
+              <div className="mb-10">
+                <LayoutDashboard className="text-primary-gold" size={36} />
               </div>
-              <h3 className="font-bebas text-3xl mb-4 text-white uppercase">VS INTEGRATE</h3>
-              <p className="text-secondary text-sm leading-relaxed mb-10 flex-grow">
+              <a
+                href="https://vs-integrate.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bebas text-3xl mb-4 text-white uppercase hover:text-primary-gold transition-colors duration-200 leading-none block"
+              >
+                VS INTEGRATE
+              </a>
+              <p className="text-text-muted text-sm leading-relaxed mb-10 grow">
                 A comprehensive developer dashboard that integrates directly with VS Code. Features interactive heatmaps, productivity goals, and developer health scoring.
               </p>
-              <div className="pt-6 border-t border-outline-variant flex justify-between items-center">
-                <span className="text-xs font-label text-outline uppercase tracking-widest">01 / DASHBOARD</span>
-                <a className="text-primary-container hover:translate-x-2 transition-transform" href="#">
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </a>
+              <div className="pt-6 border-t border-border-muted flex justify-between items-center">
+                <span className="text-xs font-mono text-border-muted uppercase tracking-widest">01 / DASHBOARD</span>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://github.com/SATWIKKKKK/ide-grate"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted hover:text-primary-gold transition-colors duration-200"
+                    aria-label="GitHub"
+                  >
+                    <Github size={16} />
+                  </a>
+                  <a
+                    href="https://vs-integrate.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
+                    aria-label="Visit project"
+                  >
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Project 2 */}
-            <div className="precision-border bg-background p-8 milled-card transition-all duration-300 flex flex-col h-full reveal">
-              <div className="flex justify-between items-start mb-12">
-                <span className="material-symbols-outlined text-primary-container text-4xl">payments</span>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] border border-outline-variant text-secondary">TS</span>
-                  <span className="px-2 py-1 text-[10px] border border-outline-variant text-secondary">RAZORPAY</span>
-                </div>
+            {/* Project 2 — AASPASS */}
+            <div className="border border-border-muted bg-surface-dark p-8 flex flex-col h-full hover:border-primary-gold hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300">
+              <div className="mb-10">
+                <CreditCard className="text-primary-gold" size={36} />
               </div>
-              <h3 className="font-bebas text-3xl mb-4 text-white uppercase">AASPASS</h3>
-              <p className="text-secondary text-sm leading-relaxed mb-10 flex-grow">
+              <a
+                href="https://aaspass.gamma.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bebas text-3xl mb-4 text-white uppercase hover:text-primary-gold transition-colors duration-200 leading-none block"
+              >
+                AASPASS
+              </a>
+              <p className="text-text-muted text-sm leading-relaxed mb-10 grow">
                 A sophisticated multi-role student services platform. Integrated secure Google OAuth and Razorpay gateway for seamless academic transactions.
               </p>
-              <div className="pt-6 border-t border-outline-variant flex justify-between items-center">
-                <span className="text-xs font-label text-outline uppercase tracking-widest">02 / ED-TECH</span>
-                <a className="text-primary-container hover:translate-x-2 transition-transform" href="#">
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </a>
+              <div className="pt-6 border-t border-border-muted flex justify-between items-center">
+                <span className="text-xs font-mono text-border-muted uppercase tracking-widest">02 / ED-TECH</span>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://github.com/SATWIKKKKK/aaspass"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted hover:text-primary-gold transition-colors duration-200"
+                    aria-label="GitHub"
+                  >
+                    <Github size={16} />
+                  </a>
+                  <a
+                    href="https://aaspass-gamma.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
+                    aria-label="Visit project"
+                  >
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Project 3 */}
-            <div className="precision-border bg-background p-8 milled-card transition-all duration-300 flex flex-col h-full reveal">
-              <div className="flex justify-between items-start mb-12">
-                <span className="material-symbols-outlined text-primary-container text-4xl">psychology</span>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] border border-outline-variant text-secondary">PYTHON</span>
-                  <span className="px-2 py-1 text-[10px] border border-outline-variant text-secondary">NLP</span>
-                </div>
+            {/* Project 3 — VFOUND */}
+            <div className="border border-border-muted bg-surface-dark p-8 flex flex-col h-full hover:border-primary-gold hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300">
+              <div className="mb-10">
+                <BrainCircuit className="text-primary-gold" size={36} />
               </div>
-              <h3 className="font-bebas text-3xl mb-4 text-white uppercase">VFOUND</h3>
-              <p className="text-secondary text-sm leading-relaxed mb-10 flex-grow">
+              <a
+                href="https://vfound.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bebas text-3xl mb-4 text-white uppercase hover:text-primary-gold transition-colors duration-200 leading-none block"
+              >
+                VFOUND
+              </a>
+              <p className="text-text-muted text-sm leading-relaxed mb-10 grow">
                 Advanced AI resume scanner trained on a massive dataset of 60,000+ profiles. Provides deep skill-gap analysis and automated candidate ranking.
               </p>
-              <div className="pt-6 border-t border-outline-variant flex justify-between items-center">
-                <span className="text-xs font-label text-outline uppercase tracking-widest">03 / ARTIFICIAL INTEL</span>
-                <a className="text-primary-container hover:translate-x-2 transition-transform" href="#">
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </a>
+              <div className="pt-6 border-t border-border-muted flex justify-between items-center">
+                <span className="text-xs font-mono text-border-muted uppercase tracking-widest">03 / ARTIFICIAL INTEL</span>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://github.com/SATWIKKKKK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted hover:text-primary-gold transition-colors duration-200"
+                    aria-label="GitHub"
+                  >
+                    <Github size={16} />
+                  </a>
+                  <a
+                    href="https://vfound.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
+                    aria-label="Visit project"
+                  >
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
               </div>
             </div>
+
           </div>
         </section>
 
         {/* Skills Section */}
         <section ref={skillsRef} id="skills" className="py-32 px-6 md:px-24">
           <div className="mb-20 text-left reveal">
-            <h2 className="text-6xl tracking-wider uppercase">TECHNICAL STACK</h2>
-            <div className="w-24 h-1 bg-primary-gold mt-4"></div>
+            <h2 className="text-6xl tracking-wider uppercase inline-block border-b-2 border-primary-gold pb-2">TECHNICAL STACK</h2>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px bg-border-muted precision-border reveal">
@@ -412,7 +480,7 @@ export default function App() {
         <section ref={contactRef} id="contact" className="py-32 px-6 md:px-24 bg-[#080808]">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 md:gap-24">
             <div className="reveal">
-              <h2 className="text-7xl md:text-8xl leading-none text-white mb-8 uppercase">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-none text-white mb-8 uppercase">
                 LET'S BUILD<br />SOMETHING <span className="text-primary-gold underline decoration-1 underline-offset-8">GREAT</span>.
               </h2>
               <p className="text-text-muted text-xl mb-12 font-light">
@@ -439,7 +507,7 @@ export default function App() {
               </div>
             </div>
 
-            <form className="space-y-8 p-8 md:p-12 bg-bg-dark precision-border relative reveal">
+            <form onSubmit={handleSubmit} className="space-y-8 p-8 md:p-12 bg-bg-dark precision-border relative reveal">
               <div className="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-primary-gold"></div>
               <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-primary-gold"></div>
               
@@ -448,6 +516,9 @@ export default function App() {
                 <input 
                   type="text" 
                   placeholder="JOHN DOE"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
                   className="w-full bg-[#080808] precision-border border-border-muted focus:border-primary-gold focus:ring-0 outline-none text-white p-4 transition-colors"
                 />
               </div>
@@ -456,6 +527,9 @@ export default function App() {
                 <input 
                   type="email" 
                   placeholder="CONTACT@EXAMPLE.COM"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
                   className="w-full bg-[#080808] precision-border border-border-muted focus:border-primary-gold focus:ring-0 outline-none text-white p-4 transition-colors"
                 />
               </div>
@@ -464,14 +538,24 @@ export default function App() {
                 <textarea 
                   rows={4} 
                   placeholder="HOW CAN WE COLLABORATE?"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required
                   className="w-full bg-[#080808] precision-border border-border-muted focus:border-primary-gold focus:ring-0 outline-none text-white p-4 transition-colors resize-none"
                 />
               </div>
+              {formStatus === 'success' && (
+                <p className="text-green-400 font-mono text-xs tracking-widest text-center">TRANSMISSION SENT SUCCESSFULLY.</p>
+              )}
+              {formStatus === 'error' && (
+                <p className="text-red-400 font-mono text-xs tracking-widest text-center">FAILED TO SEND. PLEASE TRY AGAIN.</p>
+              )}
               <button 
-                type="button"
-                className="w-full bg-primary-gold text-bg-dark font-bebas text-2xl py-4 tracking-widest hover:brightness-110 active:scale-95 transition-all"
+                type="submit"
+                disabled={formStatus === 'sending'}
+                className="w-full bg-primary-gold text-bg-dark font-bebas text-2xl py-4 tracking-widest hover:brightness-110 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                SEND TRANSMISSION
+                {formStatus === 'sending' ? 'SENDING...' : 'SEND TRANSMISSION'}
               </button>
             </form>
           </div>
@@ -481,19 +565,17 @@ export default function App() {
       {/* Footer */}
       <footer className="bg-[#0E0E0E] border-t border-border-muted py-12 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted text-center md:text-left">
-          © 2024 SATWIK CHANDRA. ENGINEERED FOR PRECISION.
+          © 2026 SATWIK CHANDRA. ENGINEERED FOR PRECISION.
         </div>
         
         <div className="flex gap-8 font-mono text-[10px] uppercase tracking-[0.2em]">
-          <a href="https://github.com/satwik-chandra" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary-gold underline decoration-primary-gold transition-colors">
+          <a href="https://github.com/SATWIKKKKK" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary-gold underline decoration-primary-gold transition-colors">
             GITHUB
           </a>
-          <a href="https://linkedin.com/in/satwikchandra" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary-gold underline decoration-primary-gold transition-colors">
+          <a href="https://linkedin.com/in/satwikchandra45" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary-gold underline decoration-primary-gold transition-colors">
             LINKEDIN
           </a>
-          <a href="#" className="text-text-muted hover:text-primary-gold underline decoration-primary-gold transition-colors">
-            TWITTER
-          </a>
+          
         </div>
 
         <div className="text-text-muted font-mono text-[10px] uppercase tracking-[0.2em]">
