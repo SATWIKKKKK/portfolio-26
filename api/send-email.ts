@@ -31,7 +31,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   });
 
   try {
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: `Portfolio Contact: ${safe(name)}`,
@@ -40,7 +40,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       replyTo: email,
     });
 
-    return res.status(200).json({ success: true });
+    // Log transport info for debugging (does not contain credentials)
+    console.log('Email sent:', {
+      messageId: info?.messageId,
+      accepted: info?.accepted,
+      rejected: info?.rejected,
+      response: info?.response,
+    });
+
+    return res.status(200).json({ success: true, info: { messageId: info?.messageId } });
   } catch (error) {
     console.error('Email send error:', error);
     return res.status(500).json({ error: 'Failed to send email. Please try again.' });

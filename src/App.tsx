@@ -26,6 +26,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
@@ -69,20 +70,24 @@ export default function App() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('sending');
+    setFormError(null);
     try {
       const res = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      const json = await res.json().catch(() => null);
       if (res.ok) {
         setFormStatus('success');
         setFormData({ name: '', email: '', message: '' });
       } else {
         setFormStatus('error');
+        setFormError(json?.error || (json && JSON.stringify(json)) || 'Failed to send');
       }
-    } catch {
+    } catch (err: any) {
       setFormStatus('error');
+      setFormError((err && err.message) || String(err));
     }
   };
 
@@ -560,7 +565,7 @@ export default function App() {
                 <p className="text-green-400 font-mono text-xs tracking-widest text-center">TRANSMISSION SENT SUCCESSFULLY.</p>
               )}
               {formStatus === 'error' && (
-                <p className="text-red-400 font-mono text-xs tracking-widest text-center">FAILED TO SEND. PLEASE TRY AGAIN.</p>
+                <p className="text-red-400 font-mono text-xs tracking-widest text-center">{formError ?? 'FAILED TO SEND. PLEASE TRY AGAIN.'}</p>
               )}
               <button 
                 type="submit"
