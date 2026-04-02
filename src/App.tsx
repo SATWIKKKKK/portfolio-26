@@ -113,7 +113,7 @@ export default function App() {
         </a>
         
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8">
+          <div className="hidden lg:flex gap-8">
           {navItems.map((item) => (
             <a key={item.name} href={item.href} className="nav-link">
               {item.name}
@@ -132,8 +132,8 @@ export default function App() {
           </a>
           
           {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-primary-gold p-2"
+            <button 
+              className="lg:hidden text-primary-gold p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -195,7 +195,7 @@ export default function App() {
                   
                   <p className="text-lg md:text-2xl text-text-muted font-light leading-relaxed">
                     <span className="text-white font-semibold">Satwik Chandra</span> — A Full Stack Architect at <span className="text-primary-gold">KIIT'28</span>. 
-                    Currently engineering high-performance systems and open to <span className="border-b border-primary-gold/50">internship opportunities</span> that push technical boundaries.
+                    Currently engineering high-performance systems and open to opportunities that push technical boundaries.
                   </p>
                   <div className="w-16 h-px bg-border-muted mt-2"></div>
                 </div>
@@ -209,7 +209,7 @@ export default function App() {
               <a href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="border border-primary-gold text-primary-gold px-10 py-4 hover:bg-primary-gold/10 transition-all">
                 VIEW RESUME
               </a>
-            </div>
+                      className="fixed inset-0 z-40 bg-bg-dark pt-24 px-6 lg:hidden"
 
             <div className="mt-20 flex flex-wrap justify-start gap-8 md:gap-12 font-mono text-primary-gold/60 text-xs md:text-sm border-t border-border-muted pt-8 w-full">
               
@@ -256,7 +256,7 @@ export default function App() {
 
         {/* Experience Section */}
         <section ref={experienceRef} id="experience" className="py-32 px-6 md:px-24">
-          <div className="mb-20 reveal">
+                              Currently engineering high-performance systems and open to <span>internship opportunities</span> that push technical boundaries.
             <h2 className="text-6xl tracking-wider inline-block border-b-2 border-primary-gold pb-2 uppercase">EXPERIENCE</h2>
         
           </div>
