@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { 
   Terminal, 
   Database, 
@@ -67,7 +67,7 @@ export default function App() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setFormStatus('sending');
     setFormError(null);
@@ -130,7 +130,7 @@ export default function App() {
 
         <div className="flex items-center gap-4">
           <a 
-            href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing"
+            href="https://drive.google.com/file/d/1WQqmztFzorqT0VzGSs6W7kMOhyShL6iC/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:block px-6 py-2 border border-primary-gold text-primary-gold font-bebas tracking-widest hover:bg-primary-gold hover:text-bg-dark transition-all duration-300 active:scale-95"
@@ -169,7 +169,7 @@ export default function App() {
                 </a>
               ))}
               <a 
-                href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing"
+                href="https://drive.google.com/file/d/1WQqmztFzorqT0VzGSs6W7kMOhyShL6iC/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full text-center py-4 border border-primary-gold text-primary-gold font-bebas text-2xl tracking-widest"
@@ -439,6 +439,47 @@ export default function App() {
                   </a>
                   <a
                     href="https://vfound.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
+                    aria-label="Visit project"
+                  >
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Project 4 — HEAT PLAN */}
+            <div className="border border-border-muted bg-surface-dark p-8 flex flex-col h-full hover:border-primary-gold hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300">
+              <div className="mb-10">
+                <Zap className="text-primary-gold" size={36} />
+              </div>
+              <a
+                href="https://heat-plan.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bebas text-3xl mb-4 text-white uppercase hover:text-primary-gold transition-colors duration-200 leading-none block"
+              >
+                HEAT PLAN
+              </a>
+              <p className="text-text-muted text-sm leading-relaxed mb-10 grow">
+                AI platform analyzing neighborhoods using climate and demographic data to generate vulnerability scores, cooling interventions, cost estimates, and ready-to-submit PDF reports at zero cost.
+              </p>
+              <div className="pt-6 border-t border-border-muted flex justify-between items-center">
+                <span className="text-xs font-mono text-border-muted uppercase tracking-widest">04 / CLIMATE TECH</span>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://github.com/SATWIKKKKK/urban-heat-classifier"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted hover:text-primary-gold transition-colors duration-200"
+                    aria-label="GitHub"
+                  >
+                    <Github size={16} />
+                  </a>
+                  <a
+                    href="https://heat-plan.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
