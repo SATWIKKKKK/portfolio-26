@@ -275,6 +275,12 @@ export default function App() {
             <div className="space-y-24">
               {[
                 {
+                  role: 'Frontend Developer',
+                  company: 'RIMONECHARGE',
+                  period: 'APR 2026 – PRESENT',
+                  desc: 'Building and managing an EV charging dashboard as a Frontend Developer, integrating live backend APIs for real-time charger status, session data, and usage analytics across responsive UI pages.'
+                },
+                {
                   role: 'Backend Developer',
                   company: 'ASVIX',
                   period: 'FEB 2026 – PRESENT',
