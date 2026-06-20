@@ -130,7 +130,7 @@ export default function App() {
 
         <div className="flex items-center gap-4">
           <a 
-            href="https://drive.google.com/file/d/1WQqmztFzorqT0VzGSs6W7kMOhyShL6iC/view?usp=sharing"
+            href="https://drive.google.com/file/d/1VUNzeNhXX1ngSyvol458FBCBiOlv32tM/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:block px-6 py-2 border border-primary-gold text-primary-gold font-bebas tracking-widest hover:bg-primary-gold hover:text-bg-dark transition-all duration-300 active:scale-95"
@@ -169,7 +169,7 @@ export default function App() {
                 </a>
               ))}
               <a 
-                href="https://drive.google.com/file/d/1WQqmztFzorqT0VzGSs6W7kMOhyShL6iC/view?usp=sharing"
+                href="https://drive.google.com/file/d/1VUNzeNhXX1ngSyvol458FBCBiOlv32tM/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full text-center py-4 border border-primary-gold text-primary-gold font-bebas text-2xl tracking-widest"
@@ -213,7 +213,7 @@ export default function App() {
               <a href="#projects" className="bg-primary-gold text-bg-dark px-10 py-4 hover:brightness-110 transition-all border border-primary-gold">
                 EXPLORE MY PROJECTS
               </a>
-              <a href="https://drive.google.com/file/d/1S_4ymmqbmJXH4ch9Kyq2vFpzHlLn84ov/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="border border-primary-gold text-primary-gold px-10 py-4 hover:bg-primary-gold/10 transition-all">
+              <a href="https://drive.google.com/file/d/1VUNzeNhXX1ngSyvol458FBCBiOlv32tM/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="border border-primary-gold text-primary-gold px-10 py-4 hover:bg-primary-gold/10 transition-all">
                 VIEW RESUME
               </a>
             </div>
@@ -236,7 +236,7 @@ export default function App() {
             <div className="gold-thread reveal">
               <h2 className="text-5xl mb-8 tracking-wider uppercase">THE ENGINEER</h2>
               <p className="text-text-muted text-lg leading-relaxed mb-6">
-                A 2nd year B.Tech CSE student at KIIT with a <span className="text-primary-gold font-bold">9.56 CGPA</span>. I don't just write code; I design systems. Passionate about building production-grade full-stack applications that solve real-world problems.
+                A 2nd year B.Tech CSE student at KIIT with a <span className="text-primary-gold font-bold">9.41 CGPA</span>. I don't just write code; I design systems. Passionate about building production-grade full-stack applications that solve real-world problems.
               </p>
               <p className="text-text-muted text-lg leading-relaxed">
                 With experience spanning across <span className="text-white font-semibold">4+ companies</span>, I've mastered the lifecycle of software—from conceptualizing features to deploying containerized microservices.
@@ -244,7 +244,7 @@ export default function App() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal">
               {[
-                { label: 'Academic Excellence', value: '9.56' },
+                { label: 'Academic Excellence', value: '9.41' },
                 { label: 'Global Companies', value: '4+' },
                 { label: 'Shipped Projects', value: '6+' },
               ].map((stat) => (
@@ -333,21 +333,21 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {/* Project 1 — VS INTEGRATE */}
+            {/* Project 1 — CADENCE */}
             <div className="border border-border-muted bg-surface-dark p-8 flex flex-col h-full hover:border-primary-gold hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300">
               <div className="mb-10">
                 <LayoutDashboard className="text-primary-gold" size={36} />
               </div>
               <a
-                href="https://vs-integrate.vercel.app"
+                href="https://ca-dence.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-bebas text-3xl mb-4 text-white uppercase hover:text-primary-gold transition-colors duration-200 leading-none block"
               >
-                VS INTEGRATE
+                CADENCE
               </a>
               <p className="text-text-muted text-sm leading-relaxed mb-10 grow">
-                A comprehensive developer dashboard that integrates directly with VS Code. Features interactive heatmaps, productivity goals, and developer health scoring.
+                Cadence tracks real editor activity across your coding stack and turns heartbeats into dashboard stats, contribution graphs, streaks, language mix, public profiles, and embeddable widgets.Track your coding activity across 7 IDEs with GitHub-style contribution graphs, streaks, language analytics, and productivity insights — no code access, just anonymous session metadata.
               </p>
               <div className="pt-6 border-t border-border-muted flex justify-between items-center">
                 <span className="text-xs font-mono text-border-muted uppercase tracking-widest">01 / DASHBOARD</span>
@@ -362,7 +362,7 @@ export default function App() {
                     <Github size={16} />
                   </a>
                   <a
-                    href="https://vs-integrate.vercel.app"
+                    href="https://ca-dence.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
@@ -415,27 +415,27 @@ export default function App() {
               </div>
             </div>
 
-            {/* Project 3 — VFOUND */}
+            {/* Project 3 — REPOID */}
             <div className="border border-border-muted bg-surface-dark p-8 flex flex-col h-full hover:border-primary-gold hover:shadow-[0_0_12px_rgba(255,215,0,0.15)] transition-all duration-300">
               <div className="mb-10">
                 <BrainCircuit className="text-primary-gold" size={36} />
               </div>
               <a
-                href="https://vfound.in"
+                href="https://repoid.space"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-bebas text-3xl mb-4 text-white uppercase hover:text-primary-gold transition-colors duration-200 leading-none block"
               >
-                VFOUND
+                REPOID
               </a>
               <p className="text-text-muted text-sm leading-relaxed mb-10 grow">
-                Advanced AI resume scanner trained on a massive dataset of 60,000+ profiles. Provides deep skill-gap analysis and automated candidate ranking.
+                Repoid is a technical interview preparation platform that adapts to your domain and your actual projects. Rather than generic question banks, it generates questions from your GitHub repositories, runs structured interview rounds, tracks your readiness over time, and surfaces the specific topics where you are weakest.
               </p>
               <div className="pt-6 border-t border-border-muted flex justify-between items-center">
-                <span className="text-xs font-mono text-border-muted uppercase tracking-widest">03 / ARTIFICIAL INTEL</span>
+                <span className="text-xs font-mono text-border-muted uppercase tracking-widest">03 / INTERVIEW PREP</span>
                 <div className="flex items-center gap-4">
                   <a
-                    href="https://github.com/SATWIKKKKK"
+                    href="https://github.com/SATWIKKKKK/Repoid"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-text-muted hover:text-primary-gold transition-colors duration-200"
@@ -444,7 +444,7 @@ export default function App() {
                     <Github size={16} />
                   </a>
                   <a
-                    href="https://vfound.in"
+                    href="https://repoid.space"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary-gold hover:translate-x-1 transition-transform duration-200"
@@ -619,7 +619,7 @@ export default function App() {
                 disabled={formStatus === 'sending'}
                 className="w-full bg-primary-gold text-bg-dark font-bebas text-2xl py-4 tracking-widest hover:brightness-110 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {formStatus === 'sending' ? 'SENDING...' : 'SEND TRANSMISSION'}
+                {formStatus === 'sending' ? 'SENDING...' : 'SEND MESSAGE'}
               </button>
             </form>
           </div>
